@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><%= @shop.name %></h5>
+    <p class="card-text"><%= @shop.description %></p>
+  </div>
+</div>
+
+
+<% @shop.products.each do |product| %>
+  <div class="card mb-3 border-danger" style="">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="<%= product.graph_link%>" class="card-img alligator-turtle" alt="..." height="200">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
+          <hr />
+          <p class="card-text"><%= product.description %></p>
+          <%= link_to "显示详细信息", [@shop, product] %> |
+          <%= link_to "编辑商品信息", edit_shop_product_path(@shop, product) %> |
+          <%= link_to "删除商品", [@shop, product], method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+  <a href="<%= shops_path %>" class="btn button1" role="button" aria-pressed="true">&lt;&lt;返回</a>
+  <a href="<%= new_shop_product_path(shop_id:@shop.id) %>" class="btn button1" role="button" aria-pressed="true">添加新商品</a>
+  <a href="<%= edit_shop_path(@shop) %>" class="btn button1" role="button" aria-pressed="true">编辑商店信息</a>
+</div>
+
+
+

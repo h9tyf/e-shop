@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Transaction:</strong>
+  <%= @transaction_product_table.transaction_id %>
+</p>
+
+<p>
+  <strong>Product option:</strong>
+  <%= @transaction_product_table.product_option_id %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_product_table_path(@transaction_product_table) %> |
+<%= link_to 'Back', transaction_product_tables_path %>

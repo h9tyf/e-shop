@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<table id="hor-zebra">
+  <thead>
+  <tr>
+    <th>店名</th>
+    <th>店铺信息</th>
+    <th>操作</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% count = 0 %>
+  <% @shops.each do |shop| %>
+    <% if shop.user.id == current_user.id %>
+      <% if count % 2 == 0 %>
+        <tr class="odd">
+          <% count+=1 %>
+      <% else %>
+        <tr>
+          <% count+=1 %>
+      <% end %>
+
+      <td width="30%"><%= shop.name %></td>
+      <td width="40%"><%= shop.description %></td>
+      <td width="30%"><%= link_to '进入店铺', shop %> |
+        <%= link_to '编辑', edit_shop_path(shop) %> |
+        <%= link_to '删除', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<hr />
+
+<p style="text-align:center">
+  <a href="<%= new_shop_path %>" class="btn button1  btn-lg" role="button" aria-pressed="true">我要开新店</a>
+</p>

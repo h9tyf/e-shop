@@ -1,0 +1,78 @@
+@import '~bootstrap/scss/bootstrap';
+
+.alligator-turtle {
+  object-fit: cover;
+}
+
+
+a{
+  color: orangered;
+}
+
+a:hover{ color: #ff0000 /*颜色自定义*/}
+
+#hor-minimalist-a
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 20px;
+  background: #fff;
+  margin: 45px;
+
+  border-collapse: collapse;
+  text-align: left;
+}
+#hor-minimalist-a th
+{
+  font-size: 20px;
+  font-weight: normal;
+  color: orangered;
+  padding: 10px 8px;
+  border-bottom: 2px solid orangered;
+}
+#hor-minimalist-a td
+{
+  color: black;
+  padding: 9px 8px 0px 8px;
+}
+#hor-minimalist-a tbody tr:hover td
+{
+  color: black;
+}
+
+.button1 {
+  background-color: #FFE4D0;
+  color: orangered;
+  border: 2px solid #F0CAB6; /* Green */
+  width: 200px;
+}
+.button1:hover {
+  background-color: #f4c5ae; /* Green */
+  color: orangered;
+}
+
+
+
+#hor-zebra
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 15px;
+  margin: 45px;
+  text-align: left;
+  border-collapse: collapse;
+}
+#hor-zebra th
+{
+  font-size: 20px;
+  font-weight: normal;
+  padding: 10px 8px;
+  color: orangered;
+}
+#hor-zebra td
+{
+  padding: 8px;
+  color: black;
+}
+#hor-zebra .odd
+{
+  background: #fff5e8;
+}

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row row-cols-1 row-cols-md-4">
+  <% @favorites.each do |favorite| %>
+    <% if favorite.user.id == current_user.id %>
+      <div class="col mb-4">
+        <div class="card h-100 border-danger">
+          <img src="<%= favorite.product.graph_link%>" class="card-img-top alligator-turtle" alt="..." height="200">
+          <div class="card-body a">
+            <h5 class="card-title" ><%= link_to favorite.product.name, [favorite.product.shop, favorite.product] %></h5>
+            <p class="card-text"><%= favorite.product.description %></p>
+            <td><%= link_to '移出收藏夹', favorite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  <% end %>
+</div>

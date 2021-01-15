@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EshopRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <b><a class="navbar-brand a" href="#">E-Shop</a></b>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item <%= "active" if controller_name == "home" || controller_name == "products" || controller_name == "product_options"%>">
+          <%= link_to("商城", {:controller => "/home", :action => :index}, {:class => "nav-link"}) %>
+        </li>
+        <li class="nav-item <%= "active" if controller_name == "shops"%>">
+          <%= link_to("我的店铺", {:controller => "/shops", :action => :index}, {:class => "nav-link"}) %>
+        </li>
+        <li class="nav-item <%= "active" if controller_name == "favorites"%>">
+          <%= link_to("我的收藏夹", {:controller => "/favorites", :action => :index}, {:class => "nav-link"}) %>
+        </li>
+        <li class="nav-item <%= "active" if controller_name == "carts"%>">
+          <%= link_to("我的购物车", {:controller => "/carts", :action => :index}, {:class => "nav-link"}) %>
+        </li>
+        <li class="nav-item <%= "active" if controller_name == "my_transactions" || controller_name == "transaction_product_tables"%>">
+          <%= link_to("我的订单", {:controller => "/my_transactions", :action => :index}, {:class => "nav-link"}) %>
+        </li>
+        <li class="nav-item <%= "active" if controller_name == "solds"%>">
+          <%= link_to("我售出的", {:controller => "/solds", :action => :index}, {:class => "nav-link"}) %>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <% if not user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "注册", new_user_registration_path, :class => 'nav-link'  %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "登录", new_user_session_path, :class => 'nav-link'  %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <span class="nav-link"><%= current_user.email %></span>
+          </li>
+          <li class="nav-item">
+            <%= link_to "注销", destroy_user_session_path, method: :delete, :class => 'nav-link'  %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+
+    <% if notice %><p class="alert alert-info"><%= notice %></p>
+    <% end %>
+    <% if alert %><p class="alert alert-warning"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </div>
+
+  </body>
+</html>

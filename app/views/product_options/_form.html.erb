@@ -1,0 +1,29 @@
+<%= form_with(model: [@shop, @product, product_option], local: true) do |form| %>
+  <% if product_option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product_option.errors.count, "error") %> prohibited this product_option from being saved:</h2>
+
+      <ul>
+        <% product_option.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <input type="hidden" name="product_id" value="<%= @product.id %>>">
+
+  <div class="field">
+    <%= form.label "选项信息" %>
+    <%= form.text_field :description, class: 'form-control'%>
+  </div>
+
+  <div class="field">
+    <%= form.label "价格" %>
+    <%= form.text_field :price, class: 'form-control' %>
+  </div>
+<br>
+  <div class="actions">
+    <%= form.submit(class:'button1', value:"确定") %>
+  </div>
+<% end %>

@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card mb-3 border-danger" style="">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="<%= @product.graph_link%>" class="card-img alligator-turtle" alt="..." height="300">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= @product.name %></h5>
+        <hr />
+        <p class="card-text"><%= @product.description %></p>
+        <% if current_user != nil %>
+          <hr />
+
+          <span style="font-size: medium ">
+                  <%= link_to "添加到收藏夹",
+                              { controller: "favorites",
+                                action: "create",
+                                user_id: current_user.id,
+                                product_id: @product.id },
+                              method: :post,
+                              data: { confirm: "Are you sure?" } %></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<table id="hor-minimalist-a">
+  <thead>
+  <tr>
+    <th scope="col">Description</th>
+    <th scope="col">price</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @product.product_options.each do |product_option| %>
+    <tr>
+      <td width="60%"><%= product_option.description %></td>
+      <td width="20%"><%= product_option.price %></td>
+      <% if current_user.id == @product.shop.user.id %>
+        <td><%= link_to "编辑", edit_shop_product_product_option_path(@shop.id, @product.id, product_option.id) %> |
+        <%= link_to "删除", [@shop, @product, product_option], method: :delete, data: { confirm: "Are you sure?" } %></td>
+      <%end %>
+
+      <% if current_user != nil %>
+        <% if current_user.id != @product.shop.user.id %>
+          <td width="20%"><%= link_to "添加到购物车",
+                          { controller: "carts",
+                            action: "create",
+                            user_id: current_user.id,
+                            product_option_id: product_option.id },
+                          method: :post,
+                          data: { confirm: "Are you sure?" } %></td>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<% if current_user.id == @product.shop.user.id %>
+  <%= link_to '<<返回', shop_path(id:@shop.id) %> |
+  <%= link_to '添加新的选项 ', new_shop_product_product_option_path(product_id:@product.id, shop_id:@shop.id) %> |
+  <%= link_to '编辑商品信息', edit_shop_product_path(@shop) %>
+<%end %>
+<% if current_user.id != @product.shop.user.id %>
+  <%= link_to '<<返回', home_path %>
+<%end %>
+
+
+
+

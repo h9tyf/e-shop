@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>订单创建于:</strong>
+  <%= @my_transaction.created_at %>
+</p>
+<% sum = 0.0 %>
+
+<table id="hor-zebra">
+  <thead>
+  <tr>
+    <th>商品名</th>
+    <th>商品信息</th>
+    <th>选项</th>
+    <th>价格</th>
+    <th></th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% count = 0 %>
+  <% @my_transaction.transaction_product_tables.each do |transaction_product_table| %>
+    <% if count % 2 == 0 %>
+      <tr class="odd">
+        <% count+=1 %>
+    <% else %>
+      <tr>
+        <% count+=1 %>
+    <% end %>
+      <td width=15%><%= transaction_product_table.product_option.product.name %></td>
+      <td width=30%><%= transaction_product_table.product_option.product.description %></td>
+      <td width=30%><%= transaction_product_table.product_option.description %></td>
+      <td width=15%><%= transaction_product_table.product_option.price %></td>
+      <% sum = sum + transaction_product_table.product_option.price %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p>
+  <b>
+    已支付：
+    <%= sum.to_s %>
+  </b>
+</p>
+
+<%= link_to '<<返回', my_transactions_path %>
