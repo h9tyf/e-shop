@@ -52,6 +52,10 @@
           <li class="nav-item">
             <span class="nav-link"><%= current_user.email %></span>
           </li>
+
+          <li class="nav-item">
+            <%= link_to "更改密码", edit_user_registration_path, :class => 'nav-link' %>
+          </li>
           <li class="nav-item">
             <%= link_to "注销", destroy_user_session_path, method: :delete, :class => 'nav-link'  %>
           </li>

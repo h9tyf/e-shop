@@ -30,12 +30,6 @@
 | Shop                      | Name: string, Description : string                       | user_id                              |
 | Sold                      | address: string, phone: string, amount: float            | user_id, product_option_id           |
 
-ER图如下：
-
-![image-20210114170214917](/home/h/.config/Typora/typora-user-images/image-20210114170214917.png)
-
-
-
 ### 相关配置
 
 ruby版本：2.5.1
