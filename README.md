@@ -33,3 +33,4 @@
 ### 相关配置
 
 ruby版本：2.5.1
+已经部署在heroku，地址为https://sleepy-plains-42331.herokuapp.com/
